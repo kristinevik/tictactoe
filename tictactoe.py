@@ -41,16 +41,14 @@ def result(board, action):
     Returns the board that results from making move (i, j) on the board.
     """
     # Make a deep copy of the board SO it doesn't change the original board
+    new_board = copy.deepcopy(board)
     try:
-        new_board = copy.deepcopy(board)
+        if new_board[action[0]][action[1]] != EMPTY: raise ValueError
         new_board[action[0]][action[1]] = player(new_board)
     except:
-        print(new_board)
-        print(action)
         raise ValueError("Invalid action")
 
     return new_board
-
 
 
 def winner(board):
