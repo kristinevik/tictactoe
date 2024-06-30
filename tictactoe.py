@@ -40,16 +40,19 @@ def result(board, action):
     """
     Returns the board that results from making move (i, j) on the board.
     """
-    # Make a deep copy of the board SO it doesn't change the original board
-    new_board = copy.deepcopy(board)
 
+    # Check if the action is valid. The move needs to be empty
+    # and on the board
+    if not (0 <= action[0] < 3) or not (0 <= action[1] < 3):
+        raise ValueError("This action is out of bounds")
+
+    if board[action[0]][action[1]] != EMPTY:
+        raise ValueError("The action is invalid because cell already taken")
+    
+    # Use a try, in case there are other invalid actions
     try:
-        # Check if the action is valid. The move needs to be empty
-        # and on the board
-        if new_board[action[0]][action[1]] != EMPTY \
-        or (0 > action[0] > 2) or (0 > action[1] > 2):
-            raise ValueError
-        
+        # Make a deep copy of the board SO it doesn't change the original board
+        new_board = copy.deepcopy(board)
         new_board[action[0]][action[1]] = player(new_board)
     except:
         raise ValueError("Invalid action")
