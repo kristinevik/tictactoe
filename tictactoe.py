@@ -42,8 +42,14 @@ def result(board, action):
     """
     # Make a deep copy of the board SO it doesn't change the original board
     new_board = copy.deepcopy(board)
+
     try:
-        if new_board[action[0]][action[1]] != EMPTY: raise ValueError
+        # Check if the action is valid. The move needs to be empty
+        # and on the board
+        if new_board[action[0]][action[1]] != EMPTY \
+        or (0 < action[0] > 3) or (0 < action[1] > 3):
+            raise ValueError
+        
         new_board[action[0]][action[1]] = player(new_board)
     except:
         raise ValueError("Invalid action")
