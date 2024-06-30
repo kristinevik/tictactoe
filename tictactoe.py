@@ -47,7 +47,7 @@ def result(board, action):
         # Check if the action is valid. The move needs to be empty
         # and on the board
         if new_board[action[0]][action[1]] != EMPTY \
-        or (0 < action[0] > 3) or (0 < action[1] > 3):
+        or (0 > action[0] > 2) or (0 > action[1] > 2):
             raise ValueError
         
         new_board[action[0]][action[1]] = player(new_board)
